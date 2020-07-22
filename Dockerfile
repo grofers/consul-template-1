@@ -12,6 +12,7 @@ FROM debian:stretch-slim AS packager
 
 RUN apt update -y && \
     apt install wget -y && \
+    apt install dnsutils -y && \
     apt install unzip -y 
 
 RUN wget https://releases.hashicorp.com/vault/1.0.3/vault_1.0.3_linux_amd64.zip && \
