@@ -10,13 +10,16 @@ export SERVICE_ACCOUNT_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount
 # TODO: Read the vault path from service in future
 # a vault path should end with login. If the path is /auth/temp/login,
 # the CNAME must be auth.temp (do not end the login in end)
-SERVICE_URL="vault-path.infra.svc.cluster.local"
+if [ ! "$ENV" == "local" ]; then
+    SERVICE_URL="vault-path.infra.svc.cluster.local"
 
-VAULT_PATH="$(dig $SERVICE_URL | grep 'CNAME' | cut -d ' ' -f 4 | awk '{print $2}' | sed 's/\./\//g')"
+    VAULT_PATH="$(dig $SERVICE_URL | grep 'CNAME' | cut -d ' ' -f 4 | awk '{print $2}' | sed 's/\./\//g')"
 
-export VAULT_TOKEN=$(vault write $VAULT_PATH"login" role=read jwt=$SERVICE_ACCOUNT_TOKEN | grep -m 1 token | awk '{print $2}')
-if [ -z "$VAULT_TOKEN" ]; then
-    echo "VAULT_TOKEN not set. Exiting ..."
-    exit 1
+    export VAULT_TOKEN=$(vault write $VAULT_PATH"login" role=read jwt=$SERVICE_ACCOUNT_TOKEN | grep -m 1 token | awk '{print $2}')
+    if [ -z "$VAULT_TOKEN" ]; then
+        echo "VAULT_TOKEN not set. Exiting ..."
+        exit 1
+    fi
 fi
-exec /usr/bin/consul-template "$@"
+
+exec /bin/consul-template "$@"
