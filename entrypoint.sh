@@ -19,4 +19,4 @@ if [ -z "$VAULT_TOKEN" ]; then
     echo "VAULT_TOKEN not set. Exiting ..."
     exit 1
 fi
-exec /usr/bin/consul-template "$@"
+exec /bin/consul-template "$@"
