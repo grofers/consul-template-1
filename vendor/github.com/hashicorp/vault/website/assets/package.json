@@ -40,7 +40,7 @@
     "object-assign": "^4.1.1",
     "object-fit-images": "^3.2.4",
     "postcss-extend-rule": "^2.0.0",
-    "preact": "^8.3.1",
+    "preact": "^8.5.3",
     "promise-polyfill": "^8.1.0",
     "query-string": "^5.1.1",
     "reshape-preact-components": "^0.6.0",
