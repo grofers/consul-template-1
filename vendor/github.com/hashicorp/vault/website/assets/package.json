@@ -30,7 +30,7 @@
     "@hashicorp/hashi-toggle": "^0.2.2",
     "@hashicorp/hashi-vertical-text-block-list": "^0.1.1",
     "@hashicorp/js-utils": "^1.0.0",
-    "@hashicorp/localstorage-polyfill": "^1.0.3",
+    "@hashicorp/localstorage-polyfill": "^1.0.14",
     "@segment/in-eu": "^0.2.1",
     "@segment/top-domain": "^3.0.0",
     "color-contrast": "^0.0.1",
