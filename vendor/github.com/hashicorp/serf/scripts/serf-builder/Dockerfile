@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:trusty-20190515
 
 ENV GOVERSION 1.7.5
 
